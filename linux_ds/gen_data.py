@@ -208,5 +208,8 @@ if __name__ == '__main__':
     #gen_yolo_dataset('/usr/share/wallpapers', './v20_bloom_48',dataset_dir='./yolo_v20_bloom_48_dataset', count=5000)
     fg_dir = sys.argv[1]
     count = int(sys.argv[2])
-    ds_dir = fg_dir + f"_dataset_{count}"
+    if fg_dir.endswith('/'):
+        ds_dir = fg_dir[:-1] + f"_ds_{count}"
+    else:
+        ds_dir = fg_dir + f"_ds_{count}"
     gen_yolo_dataset('/usr/share/wallpapers', fg_dir, dataset_dir=ds_dir, count=count)
