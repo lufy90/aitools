@@ -6,6 +6,9 @@ except:
     import requests
     use_ollama_client = False
 
+if not requests:
+    import requests
+
 def chat(host, model):
     while True:
         content = input("> ")
@@ -33,9 +36,21 @@ def chat(host, model):
                     }
             res = requests.post(url, json=data)
             if not res.ok:
-                raise Exception('request failed:',res.status)
+                raise Exception('request failed:',res.status_code)
             res_data = res.json()
             print(res_data["response"])
+
+def api(prompt, host="http://10.10.16.11:11434", model="deepseek-r1:32b"):
+    url = f'{host}/api/generate'
+    data = {
+            "model":model,
+            "prompt":prompt,
+            "stream":False,
+            }
+    res = requests.post(url, json=data)
+    if not res.ok:
+        raise Exception('request failed due to: ', res.status_code)
+    return res.json()
 
 if __name__ == '__main__':
     import sys
