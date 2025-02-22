@@ -52,7 +52,7 @@ def merge_img(bg_path, fg_paths, output, scale=1, max_offset=3, allowed_position
         fg_w,fg_h = fg.size
         token_areas.append((fg_x,fg_y,fg_x+fg_w,fg_y+fg_h))
         print(f'using {fg_path} as icon at position {pos}')
-        bg.paste(fg, pos)
+        bg.paste(fg, pos, mask=fg)
         base_name = os.path.basename(fg_path)
         label_name ='.'.join(base_name.split('_')[-1].split('.')[:-1])
         loc = [*pos, fg_w, fg_h]

@@ -15,12 +15,18 @@ def match(icon_path, img_path, threshold=0.6):
     threshold = threshold
     loc = np.where(result >= threshold)
     
+    number = 1
     for pt in zip(*loc[::-1]):
+        location = ((pt[0] + icon.shape[1], pt[1] + icon.shape[0]))
+        print(f'No. {number}: find icon at {location}')
         cv2.rectangle(img, pt, (pt[0] + icon.shape[1], pt[1] + icon.shape[0]), (0, 255, 0), 2)
-    
-    cv2.imshow("Detected Icon", img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+        number = number + 1
+
+    #img.resize((540, 970))
+    #
+    #cv2.imshow("Detected Icon", img)
+    #cv2.waitKey(0)
+    #cv2.destroyAllWindows()
 
 def detect_icons(img_path):
 
