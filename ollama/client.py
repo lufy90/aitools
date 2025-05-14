@@ -59,5 +59,6 @@ if __name__ == '__main__':
         model = sys.argv[2]
     except:
         host = "http://10.10.16.11:11434"
-        model = "deepseek-r1:32b"
+#        model = "deepseek-r1:32b"
+        model = "deepseek-coder-v2"
     chat(host, model)

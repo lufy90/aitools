@@ -13,8 +13,9 @@ def gen_case(code_path, host, model):
 if __name__ == '__main__':
     import sys
     host="http://10.10.16.11:11434"
-    model="deepseek-coder-v2"
+    #model="deepseek-coder-v2"
+    model="deepseek-r1:32b"
     res = gen_case(sys.argv[1], host, model)
     print(f'model: {res["model"]}')
-    print(f'total_duration: {res["total_duration"]}')
+    print(f'total_duration: {res["total_duration"]/1000/1000/1000}')
     print(f'response: {res["response"]}')

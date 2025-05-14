@@ -22,10 +22,15 @@ def get_depts():
 def update_user(user_info:dict, depts:list):
     username = user_info.get("name")
     wechat_user = get_person(username)
+    if not wechat_user.is_valid:
+        print(f'Invalid user: {username}')
+        print(f'Need deactivate: {username}')
+        #res = client.request('PATCH', f"/system/user/{user_info.get('id')}", data={'is_active': False})
+        return None
 
     # if user_name get same no in ustp and wechat
     if not wechat_user.no.lower() == user_info.get("username").lower():
-        raise Exception(f'Different user No to {name}: {wechat_user.no}, {user_info.get("username")}')
+        raise Exception(f'Different user No to {username}: {wechat_user.no}, {user_info.get("username")}')
 
     wechat_dept_names = wechat_user.dept.split('/')
     print(f'wechat_dept_names: {wechat_dept_names}')
@@ -40,7 +45,8 @@ def update_user(user_info:dict, depts:list):
             parent_id = None
         named_depts = [x for x in depts if name == x.get('name') and x.get('parent') == parent_id]
         if len(named_depts) > 1:
-            raise Exception("Duplicated names: f{ustp_depts}")
+            print(f'named_depts: {named_depts}')
+            raise Exception(f"Duplicated names: {ustp_depts}")
         elif len(named_depts) == 0:
             print(f'no such dept: {name}, now create.')
             # create new dept
@@ -53,7 +59,7 @@ def update_user(user_info:dict, depts:list):
         elif len(named_depts) == 1:
             ustp_dept = named_depts[0]
         ustp_depts.append(ustp_dept)
-    print(f'uspt_depts: {ustp_depts}')
+    print(f'ustp_depts: {ustp_depts}')
 
     exp_user_dept = ustp_depts[-1].get('id')
     current_user_dept = user_info.get('dept')
@@ -64,18 +70,24 @@ def update_user(user_info:dict, depts:list):
         if res.get('code') != 2000:
             print('res:', res)
         else:
-            print(f'{username} has updated')
+            print(f'{username} has been updated')
     else:
         print(f'{username} has no need to update')
 
 def update_users(**kw):
     depts = get_depts()
     users = get_users(**kw)
+
     for user in users:
-        update_user(user, depts)
+        try:
+            update_user(user, depts)
+        except Exception as e:
+            print(f'user {user.get("name")} failed with exception {str(e)}')
+            #raise(e)
 
 
 if __name__ == "__main__":
-    os.system('xdotool windowactivate 127926280')
+    #os.system('xdotool windowactivate 127926280')
     time.sleep(2)
-    update_users(name=sys.argv[1])
+    #update_users(name=sys.argv[1])
+    update_users(limit=999)

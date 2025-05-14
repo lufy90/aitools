@@ -1,1 +1,9 @@
 *.pyc
+venv
+*.png
+*.gz
+*.jpg
+tmp
+output
+*.svg
+*.log

@@ -1,0 +1,1242 @@
+Help on class BaseCase in module apps.dde_autotest_euler.case.base_case:
+
+class BaseCase(apps.dde_autotest_euler.method.assert_method.AssertMethod)
+ |  用例基类
+ |  
+ |  Method resolution order:
+ |      BaseCase
+ |      apps.dde_autotest_euler.method.assert_method.AssertMethod
+ |      src.assert_common.AssertCommon
+ |      builtins.object
+ |  
+ |  Class methods inherited from apps.dde_autotest_euler.method.assert_method.AssertMethod:
+ |  
+ |  assert_image_exist_in_dde(img_name, rate=0.8) from builtins.type
+ |      断言图像存在于dde界面中
+ |  
+ |  assert_image_not_exist_in_dde(img_name, rate=0.8) from builtins.type
+ |      断言图像不存在于dde界面中
+ |  
+ |  ----------------------------------------------------------------------
+ |  Static methods inherited from apps.dde_autotest_euler.method.assert_method.AssertMethod:
+ |  
+ |  assert_all(expect)
+ |      断言所有{{expect}}结果为真
+ |  
+ |  assert_any(expect)
+ |      断言任一{{expect}}结果为真
+ |  
+ |  assert_equal(expect, actual)
+ |      判断预期值<{{expect}>与实际值<{{actual}>相等
+ |  
+ |  assert_false(expect)
+ |      断言{{expect}}结果为假
+ |  
+ |  assert_in(target: str, pool: str)
+ |      判断<{{target}}>在<{{pool}}>中
+ |  
+ |  assert_not_equal(expect, actual)
+ |      判断预期值<{{expect}>与实际值<{{actual}>不相等
+ |  
+ |  assert_not_in(target: str, pool: str)
+ |      判断<{{target}}>不在<{{pool}}>中
+ |  
+ |  assert_process_status(expect, app)
+ |       断言应用进程是否存在
+ |      :param expect: 进程期望结果 True /False
+ |      :param app: 应用名字
+ |  
+ |  assert_sequence_in(target: list, pool: list)
+ |      判断<{{target}}>在<{{pool}}>中
+ |  
+ |  assert_sequence_not_in(target: list, pool: list)
+ |      判断<{{target}}>不在<{{pool}}>中
+ |  
+ |  assert_true(expect)
+ |      断言{{expect}}结果为真
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods inherited from src.assert_common.AssertCommon:
+ |  
+ |  assert_file_endwith_exist(path, endwith) from builtins.type
+ |       断言路径下是否存在以 endwith 结果的文件
+ |      :param path: 路径
+ |      :param endwith: 文件后缀， txt，rar 等
+ |  
+ |  assert_image_exist_during_time(widget: str, screen_time: Union[float, int], rate: float = None, pause: Union[int, float] = None) from builtins.type
+ |      在一段时间内截图多张图片进行识别，其中有一张图片识别成功即返回结果;
+ |      适用于气泡类的断言，比如气泡在1秒内消失，如果用常规的图像识别则有可能无法识别到；
+ |      :param image_path: 要识别的模板图片；
+ |      :param screen_time: 截取屏幕图片的时间，单位秒；
+ |      :param rate: 识别率；
+ |      :param pause: 截取屏幕图片的间隔时间，默认不间隔；
+ |  
+ |  assert_pic_px(file, size=(0, 0)) from builtins.type
+ |       断言图片尺寸
+ |      :param file: 结果
+ |      :param size: 期望尺寸 例如（120, 400）
+ |  
+ |  ----------------------------------------------------------------------
+ |  Static methods inherited from src.assert_common.AssertCommon:
+ |  
+ |  assert_element_exist(expr)
+ |       期望元素存在
+ |      :param expr: 匹配元素的格式, 例如： $/dde-file-manager//1.txt
+ |  
+ |  assert_element_not_exist(expr)
+ |       期望元素不存在
+ |      :param expr: 匹配元素的格式
+ |  
+ |  assert_element_numbers(expr, number)
+ |       查找元素的个数与期望一致
+ |      :param expr: 匹配元素的格式
+ |      :param number: 匹配元素个数
+ |  
+ |  assert_file_exist(widget, file=None, recursive=False)
+ |       期望存在文件路径
+ |      :param widget: 文件全路径或目录 例：~/Desktop/1.txt
+ |      :param file: 文件名
+ |      :param recursive: 是否递归查找
+ |  
+ |  assert_file_not_exist(widget, file=None, recursive=False)
+ |       期望不存在文件路径
+ |      :param widget: 文件全路径 例：~/Desktop/1.txt
+ |      :param file: 文件名
+ |      :param recursive: 是否递归查找
+ |  
+ |  assert_image_exist(widget: str, rate: float = None, multiple: bool = False, picture_abspath: str = None, network_retry: int = None, pause: [<class 'int'>, <class 'float'>] = None, timeout: [<class 'int'>, <class 'float'>] = None, match_number: int = None)
+ |       期望界面存在模板图片
+ |      :param widget: 图片路径 例：apps/autotest_app/assert_res/1.png
+ |      :param rate: 匹配相似度
+ |  
+ |  assert_image_not_exist(widget: str, rate: float = None, multiple: bool = False, picture_abspath: str = None, network_retry: int = None, pause: [<class 'int'>, <class 'float'>] = None, timeout: [<class 'int'>, <class 'float'>] = None, match_number: int = None)
+ |       期望界面不存在模板图片
+ |      :param widget: 图片路径 apps/autotest_app/assert_res/1.png
+ |      :param rate: 匹配相似度
+ |  
+ |  assert_not_share_folder(filename)
+ |       断言不存在共享文件夹 filename
+ |      :param filename: 共享文件夹名称
+ |  
+ |  assert_ocr_exist(*args, picture_abspath=None, similarity=0.6, return_first=False, lang='ch', network_retry: int = None, pause: [<class 'int'>, <class 'float'>] = None, timeout: [<class 'int'>, <class 'float'>] = None, max_match_number: int = None, mode: str = 'all', bbox: dict = None)
+ |      断言文案存在
+ |      :param args: 目标字符,识别一个字符串或多个字符串。
+ |      :param picture_abspath: 要识别的图片路径，如果不传默认截取全屏识别。
+ |      :param similarity: 匹配度。
+ |      :param return_first: 只返回第一个,默认为 False,返回识别到的所有数据。
+ |      :param lang: `ch`, `en`, `fr`, `german`, `korean`, `japan`
+ |      :param network_retry: 连接服务器重试次数
+ |      :param pause: 重试间隔时间,单位秒
+ |      :param timeout: 最大匹配超时,单位秒
+ |      :param max_match_number: 最大匹配次数
+ |      :param mode: "all" or "any"，all 表示识别所有目标字符，any 表示识别任意一个目标字符，默认值为 all
+ |      :param bbox:
+ |          接收一个字典，包含一个区域，在区域内进行识别，用于干扰较大时提升OCR识别精准度
+ |          字典字段:
+ |              start_x: 开始 x 坐标（左上角）
+ |              start_y: 开始 y 坐标（左上角）
+ |              w: 宽度
+ |              h: 高度
+ |              end_x: 结束 x 坐标（右下角）
+ |              end_y: 结束 y 坐标（右下角）
+ |              注意 ： end_x + end_y 与 w + h 为互斥关系, 必须且只能传入其中一组
+ |          示例：
+ |              {start_x=0， start_y=0， w=100， h=100}
+ |              {start_x=0， start_y=0， end_x=100， end_y=100}
+ |  
+ |  assert_ocr_not_exist(*args, picture_abspath=None, similarity=0.6, return_first=False, lang='ch', network_retry: int = None, pause: [<class 'int'>, <class 'float'>] = None, timeout: [<class 'int'>, <class 'float'>] = None, max_match_number: int = None, bbox: dict = None)
+ |      断言文案不存在
+ |      :param args: 目标字符,识别一个字符串或多个字符串。
+ |      :param picture_abspath: 要识别的图片路径，如果不传默认截取全屏识别。
+ |      :param similarity: 匹配度。
+ |      :param return_first: 只返回第一个,默认为 False,返回识别到的所有数据。
+ |      :param lang: `ch`, `en`, `fr`, `german`, `korean`, `japan`
+ |      :param network_retry: 连接服务器重试次数
+ |      :param pause: 重试间隔时间,单位秒
+ |      :param timeout: 最大匹配超时,单位秒
+ |      :param max_match_number: 最大匹配次数
+ |      :param bbox:
+ |          接收一个字典，包含一个区域，在区域内进行识别，用于干扰较大时提升OCR识别精准度
+ |          字典字段:
+ |              start_x: 开始 x 坐标（左上角）
+ |              start_y: 开始 y 坐标（左上角）
+ |              w: 宽度
+ |              h: 高度
+ |              end_x: 结束 x 坐标（右下角）
+ |              end_y: 结束 y 坐标（右下角）
+ |              注意 ： end_x + end_y 与 w + h 为互斥关系, 必须且只能传入其中一组
+ |          示例：
+ |              {start_x=0， start_y=0， w=100， h=100}
+ |              {start_x=0， start_y=0， end_x=100， end_y=100}
+ |  
+ |  assert_process_num(num, app)
+ |       断言应用进程的数量
+ |      :param num: 期望的进程数量
+ |      :param app: 应用名字
+ |  
+ |  assert_share_folder(filename)
+ |       断言存在共享文件夹 filename
+ |      :param filename: 共享文件夹名称
+ |  
+ |  assert_theme(expect)
+ |       断言主题, 图片中颜色大于50%, 为断言主题准确性，建议最大化窗口
+ |      :param expect: 期望的主题 浅色/深色
+ |  
+ |  assert_window_amount(app, expect)
+ |       断言应用窗口数量
+ |      :param expect: 应用窗口数量
+ |      :param app: 应用名字
+ |  
+ |  assert_window_size(expect, real)
+ |       断言窗口大小与期望一致
+ |      :param expect: 窗口的期望大小 （1920, 400）
+ |      :param real: 窗口的实际大小（1920, 400）
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from src.assert_common.AssertCommon:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+
+
+Help on class DdeMethod in module apps.dde_autotest_euler.method.dde_method:
+
+class DdeMethod(src.Src)
+ |  DdeMethod(name=None, description=None, config_path=None, number=-1, check_start=True, ui_name=None, **kwargs)
+ |  
+ |  应用方法主类
+ |  
+ |  Method resolution order:
+ |      DdeMethod
+ |      src.Src
+ |      src.cmdctl.CmdCtl
+ |      src.image_utils.ImageUtils
+ |      image_center.ImageCenter
+ |      src.filectl.FileCtl
+ |      src.shortcut.ShortCut
+ |      src.mouse_key.MouseKey
+ |      src.calculate.Calculate
+ |      src.ocr_utils.OCRUtils
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  add_common_account_by_control_center(self)
+ |      在控制中心中添加新的账户 test
+ |  
+ |  add_english_system_language_in_control_center(self)
+ |      在控制中心中添加 英语 系统语言
+ |  
+ |  add_hanyu_keyboard_layout_in_control_center(self)
+ |      在控制中心中添加 汉语 键盘布局
+ |  
+ |  add_network_dsl_by_control_center(self)
+ |      在控制中心的 网络 模块中添加DSL
+ |  
+ |  add_root_account_by_control_center(self)
+ |      在控制中心中添加新的账户 test
+ |  
+ |  change_current_account_password_by_control_center(self)
+ |      在控制中心中修改当前用户密码
+ |  
+ |  change_other_account_password_by_control(self)
+ |      在控制中心中修改非当前用户密码
+ |  
+ |  change_resolution_by_control_center(self)
+ |      在控制中心中修改屏幕分辨率
+ |  
+ |  change_time_area_by_control_center(self)
+ |      在控制中心中更改时区
+ |  
+ |  change_time_by_control_center(self)
+ |      在控制中心中手动修改时间
+ |  
+ |  click_documents_in_pop_window_by_img(self)
+ |      在文本编辑器的文件管理器弹窗中点击左侧 文档 目录
+ |  
+ |  click_restore(self)
+ |      点击左上角
+ |  
+ |  click_save_btn_in_pop_window(self)
+ |      在弹出的文件保存窗口中点击保存
+ |  
+ |  delete_keyboard_layout_in_control_center(self)
+ |      在控制中心的键盘布局视图删除除选中之外的布局
+ |  
+ |  delete_network_dsl_by_control_center(self)
+ |      在控制中心的网络DSL模块中删除添加的测试DSL连接
+ |  
+ |  delete_other_time_area_by_control_center(self)
+ |      删除时区列表多余的一个时区
+ |  
+ |  delete_system_language_by_img(self)
+ |      在 系统语言 视图中删除其他的系统语言
+ |  
+ |  delete_test_account_by_control_center(self)
+ |      在控制中心中将新添加的账户test删除
+ |  
+ |  export_all_log_by_attr(self)
+ |      导出所有的日志
+ |  
+ |  export_file_by_attr(self, module)
+ |      module:目标模块的名称，概况，处理器，主板......
+ |  
+ |  export_log_by_attr(self, log_name, log_type)
+ |      输入需要导出的日志名称以及类型，通过元素右键点击日志进行导出，注意不包括启动日志
+ |      log_name:Xorg Log,Application Log,Boot-Shutdown Event
+ |      log_type:TEXT (*.txt),Doc (*.doc),Xls (*.xls),Html (*.html)
+ |  
+ |  open_software_by_launcher(self, text)
+ |      通过启动器打开软件
+ |  
+ |  rename_file_in_pop_window_by_attr(self, filename)
+ |      在弹出的文件保存窗口中对文件进行重命名并且保存,文件名需要包含后缀名，且文件名不可与文档目录下其他文件重复
+ |  
+ |  rename_file_same_name_in_pop_window_by_attr(self, filename)
+ |      在弹出的文件保存窗口中将文件重命名为重复名称并且点击保存，方法输入的名称为目标文件名称
+ |  
+ |  reset_current_account_password_from_change_password_by_control_center(self)
+ |      在控制中心中将修改的当前用户密码重置为修改前的密码
+ |  
+ |  reset_other_account_password_from_change_password_by_control_center(self)
+ |      在控制中心中将修改的非当前用户密码重置为修改前的密码（该方法主要用于对修改密码的重置，方法内无鉴权操作）
+ |  
+ |  reset_resolution_by_control_center(self)
+ |      在控制中心中将修改的分辨率调回1920x1080
+ |  
+ |  search_font_in_font_manager(self, fontname)
+ |      在字体管理器中搜索字体
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |  
+ |  browser
+ |  
+ |  dde_control_center
+ |  
+ |  dde_desktop
+ |  
+ |  dde_dock
+ |  
+ |  dde_file_manager
+ |  
+ |  dde_launcher
+ |  
+ |  dde_polkit_agent
+ |  
+ |  deepin_devicemanager
+ |  
+ |  deepin_draw
+ |  
+ |  deepin_editor
+ |  
+ |  deepin_font_manager
+ |  
+ |  deepin_log_viewer
+ |  
+ |  deepin_screen_recorder
+ |  
+ |  deepin_system_monitor
+ |  
+ |  deepin_terminal
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |  
+ |  account_message = 'uostest12#$'
+ |  
+ |  change_password = 'testpass12#$'
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from src.Src:
+ |  
+ |  __init__(self, name=None, description=None, config_path=None, number=-1, check_start=True, ui_name=None, **kwargs)
+ |      dogtail or button center param
+ |      :param kwargs: app_name, desc, number
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods inherited from src.cmdctl.CmdCtl:
+ |  
+ |  change_app_to_default_theme(app_name) from builtins.type
+ |       修改app主题跟随系统
+ |      :param app_name: 应用名字
+ |  
+ |  change_sys_icon_theme(theme='bloom') from builtins.type
+ |       修改系统的图标主题
+ |      :param theme: 默认 bloom. 支持：Vintage,bloom,bloom-classic,bloom-classic-dark,bloom-dark
+ |  
+ |  get_daemon_process_num(app, grep_list: str = None) -> int from builtins.type
+ |       获取有守护进程的应用进程数量
+ |      :param app:
+ |      :return: int
+ |  
+ |  get_daemon_process_status(app, grep_list: str = None) -> bool from builtins.type
+ |       获取有守护进程的应用进程状态
+ |      :param app: 应用包名
+ |      :return: Boolean
+ |  
+ |  get_process_status(app: str, grep_list: str = None) -> bool from builtins.type
+ |       获取进程状态
+ |      :param app: 应用包名
+ |      :return: Boolean
+ |  
+ |  kill_process(process, grep_list: [<class 'list'>, <class 'tuple'>] = None) from builtins.type
+ |       杀进程
+ |      :param process: 进程名
+ |  
+ |  monitor_process(app_name, grep_list: str = None) from builtins.type
+ |       监控进程状态
+ |      :param app_name: 应用包名
+ |      :return: 进程 ID，进程名，
+ |  
+ |  run_cmd(command, interrupt=False, timeout=25, out_debug_flag=True, command_log=True, executable='/bin/bash', return_code=False, workdir: str = None) from builtins.type
+ |       执行shell命令
+ |      :param command: shell 命令
+ |      :param interrupt: 命令异常时是否中断
+ |      :param timeout: 命令执行超时
+ |      :param out_debug_flag: 命令返回信息输出日志
+ |      :param command_log: 执行的命令字符串日志
+ |      :return: 返回终端输出
+ |  
+ |  sudo_kill_process(process, grep_list: [<class 'list'>, <class 'tuple'>] = None) from builtins.type
+ |  
+ |  sudo_run_cmd(command, workdir: str = None, interrupt: bool = False, timeout: int = 25, out_debug_flag: bool = True, command_log: bool = True, password: str = None, return_code=False) from builtins.type
+ |  
+ |  ----------------------------------------------------------------------
+ |  Static methods inherited from src.cmdctl.CmdCtl:
+ |  
+ |  expect_run(cmd: str, events: dict, return_code=False, timeout: int = 30)
+ |              expect_run(
+ |                  "ssh username@machine_ip 'ls -l'",
+ |                  events={'password':'secret
+ |      '}
+ |              )
+ |              如果 return_code=True，返回 (stdout, return_code)
+ |  
+ |  minimize_current_window()
+ |       最小化当前激活窗口
+ |      :return: None
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from src.cmdctl.CmdCtl:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes inherited from src.cmdctl.CmdCtl:
+ |  
+ |  GREP_LIST = ('grep', 'pytest', 'python', 'asan', 'tee', 'ffmpeg', 'you...
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods inherited from src.image_utils.ImageUtils:
+ |  
+ |  find_image_remote(widget: tuple, rate: Union[float, int] = None, multiple: bool = False, picture_abspath: str = None, screen_bbox: List[int] = None, log_level: str = 'info', network_retry: int = None, pause: [<class 'int'>, <class 'float'>] = None, timeout: [<class 'int'>, <class 'float'>] = None, max_match_number: int = None) from builtins.type
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods inherited from image_center.ImageCenter:
+ |  
+ |  find_image(*widget, rate: Union[float, int] = None, multiple: bool = False, picture_abspath: str = None, screen_bbox: List[int] = None, log_level: str = 'info', network_retry: int = None, pause: [<class 'int'>, <class 'float'>] = None, timeout: [<class 'int'>, <class 'float'>] = None, max_match_number: int = None) from builtins.type
+ |       在屏幕中区寻找小图，返回坐标，
+ |       如果找不到，根据配置重试次数，每次间隔1秒
+ |      :param picture_abspath:
+ |      :param widget: 模板图片路径
+ |      :param rate: 相似度
+ |      :param multiple: 是否返回匹配到的多个目标
+ |      :param screen_bbox: 截取屏幕上指定区域图片（仅支持X11下使用）；
+ |          [x, y, w, h]
+ |          x: 左上角横坐标；y: 左上角纵坐标；w: 宽度；h: 高度；根据匹配度返回坐标
+ |      :param log_level: 日志级别
+ |      :param network_retry: 连接服务器重试次数
+ |      :param pause: 图像识别重试的间隔时间
+ |      :param timeout: 最大匹配超时,单位秒
+ |      :param max_match_number: 最大匹配次数
+ |      :return: 坐标元组
+ |  
+ |  get_during(image_path: str, screen_time: Union[float, int], rate: float = None, pause: Union[int, float] = None, max_range: int = 10000) from builtins.type
+ |      在一段时间内截图多张图片进行识别，其中有一张图片识别成功即返回结果;
+ |      适用于气泡类的断言，比如气泡在1秒内消失，如果用常规的图像识别则有可能无法识别到；
+ |      :param image_path: 要识别的模板图片；
+ |      :param screen_time: 截取屏幕图片的时间，单位秒；
+ |      :param rate: 识别率；
+ |      :param pause: 截取屏幕图片的间隔时间，默认不间隔；
+ |  
+ |  img_exists(widget, rate=None) from builtins.type
+ |       判断图片是否存在，通常用于断言
+ |      :param widget: 模块图片路径
+ |      :param rate: 相似度
+ |      :return:
+ |  
+ |  save_temporary_picture(_x: int, _y: int, width: int, height: int, log_level='info') from builtins.type
+ |       截取屏幕上指定区域图片，保存临时图片，并返回图片路径
+ |      :param _x: 左上角横坐标
+ |      :param _y: 左上角纵坐标
+ |      :param width: 宽度
+ |      :param height: 高度
+ |      :param log_level: 日志级别
+ |      :return: 图片路径
+ |  
+ |  ----------------------------------------------------------------------
+ |  Static methods inherited from image_center.ImageCenter:
+ |  
+ |  find_image_color(widget)
+ |       获取图片的颜色值
+ |      :param widget: 模板图片路径
+ |      :return: 图片的颜色值
+ |  
+ |  get_pic_px(pic_position)
+ |      获取图片的分辨率
+ |      :param pic_position: 图片路径
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes inherited from image_center.ImageCenter:
+ |  
+ |  wayland_screen_dbus = 'qdbus org.kde.KWin /Screenshot screenshotFullsc...
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods inherited from src.filectl.FileCtl:
+ |  
+ |  find_files(path: str, startwith: str = None, include: str = None, endwith: str = None, not_includes: tuple = (), recursive: bool = False, abs_path: bool = False) -> list from builtins.type
+ |       查找文件
+ |      :param path: 查找路径
+ |      :param startwith: 以 xx 开头
+ |      :param include: 包含的文件
+ |      :param endwith: 以 xx 结尾
+ |      :param not_includes: 不包含的文件夹
+ |      :param recursive: 是否查找子目录
+ |      :param abs_path: 是否返回绝对路径列表。
+ |      :return: 查找到的文件列表
+ |  
+ |  ----------------------------------------------------------------------
+ |  Static methods inherited from src.filectl.FileCtl:
+ |  
+ |  creat_files(path: str, file_name: str = '', file_type: str = 'dir')
+ |       创建文件或文件夹
+ |      :param path: 用户下目录下的路径
+ |      :param file_name: 文件名，默认为空
+ |      :param file_type: 文件类型，默认 dir，文件夹， file 文件
+ |  
+ |  delete_files(path: str, ignores: tuple = (), includes: tuple = ())
+ |       删除文件或文件夹
+ |      :param path: 用户目录下的路径
+ |      :param ignores: 忽略的文件列表
+ |      :param includes: 删除的文件列表
+ |  
+ |  file_exists(*files, abspath=False, _try=True)
+ |       查找文件，若有不存在的文件则返回None货抛出异常
+ |      :param files: 文件列表
+ |      :param abspath: 是否绝对路径
+ |      :param _try: 是否抛出异常
+ |      :return: 文件列表
+ |  
+ |  file_name_and_format(position, _format=None)
+ |       获取文件的名称和格式, 返回名称和格式组成的tuple
+ |      :param position: 路径
+ |      :param _format: 以 xx 结尾
+ |      :return: 名称和格式
+ |  
+ |  move_files(path: str, file_name: str, new_path: str = None, new_file_name: str = None)
+ |       移动文件
+ |      :param path: 旧路径
+ |      :param file_name: 旧文件
+ |      :param new_path: 新路径
+ |      :param new_file_name: 新文件
+ |      :return:
+ |  
+ |  rename_files(path: str, old_name: str, new_name: str)
+ |       重命名文件
+ |      :param path: 用户目录下的路径
+ |      :param old_name: 旧名字
+ |      :param new_name: 新名字
+ |      :return:
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods inherited from src.shortcut.ShortCut:
+ |  
+ |  alt_d() from builtins.type
+ |       alt+d
+ |      :return:
+ |  
+ |  alt_enter() from builtins.type
+ |       快捷键影院进入全屏
+ |      :return:
+ |  
+ |  alt_f2() from builtins.type
+ |       alt_f2
+ |      :return:
+ |  
+ |  alt_f4() from builtins.type
+ |       alt_f4
+ |      :return:
+ |  
+ |  alt_m() from builtins.type
+ |       ctrl_m
+ |      :return:
+ |  
+ |  alt_o() from builtins.type
+ |       ocr应用内部快捷键
+ |      :return:
+ |  
+ |  alt_p() from builtins.type
+ |       贴图应用内部快捷键
+ |      :return:
+ |  
+ |  alt_printscreen() from builtins.type
+ |       快捷键 <alt + PrintScreen>
+ |      :return:
+ |  
+ |  alt_s() from builtins.type
+ |       快捷键连拍截图
+ |      :return:
+ |  
+ |  alt_shift_tab() from builtins.type
+ |       快捷键切换应用窗口
+ |      :return:
+ |  
+ |  alt_tab() from builtins.type
+ |       快捷键alt+table
+ |      :return:
+ |  
+ |  backspace() from builtins.type
+ |       backspace
+ |      :return:
+ |  
+ |  ctrl_a() from builtins.type
+ |       ctrl_a
+ |      :return:
+ |  
+ |  ctrl_add() from builtins.type
+ |       ctrl++
+ |      :return:
+ |  
+ |  ctrl_alt_a() from builtins.type
+ |       ctrl_alt_a
+ |      :return:
+ |  
+ |  ctrl_alt_delete() from builtins.type
+ |       快捷键打开剪切板
+ |      :return:
+ |  
+ |  ctrl_alt_down() from builtins.type
+ |       ctrl_alt_down
+ |      :return:
+ |  
+ |  ctrl_alt_t() from builtins.type
+ |       ctrl_alt_t
+ |      :return:
+ |  
+ |  ctrl_alt_up() from builtins.type
+ |       ctrl_alt_up
+ |      :return:
+ |  
+ |  ctrl_alt_v() from builtins.type
+ |       快捷键打开剪切板
+ |      :return:
+ |  
+ |  ctrl_c() from builtins.type
+ |       ctrl_c
+ |      :return:
+ |  
+ |  ctrl_down() from builtins.type
+ |       ctrl_down
+ |      :return:
+ |  
+ |  ctrl_e() from builtins.type
+ |       ctrl+e
+ |      :return:
+ |  
+ |  ctrl_f() from builtins.type
+ |       ctrl_f
+ |      :return:
+ |  
+ |  ctrl_f9() from builtins.type
+ |       ctrl_f9 快捷键设置壁纸
+ |      :return:
+ |  
+ |  ctrl_g() from builtins.type
+ |       ctrl_g
+ |      :return:
+ |  
+ |  ctrl_h() from builtins.type
+ |       ctrl h
+ |      :return:
+ |  
+ |  ctrl_i() from builtins.type
+ |       ctrl i
+ |      :return:
+ |  
+ |  ctrl_l() from builtins.type
+ |       ctrl_l
+ |      :return:
+ |  
+ |  ctrl_left() from builtins.type
+ |       ctrl_left
+ |      :return:
+ |  
+ |  ctrl_n() from builtins.type
+ |       ctrl_n
+ |      :return:
+ |  
+ |  ctrl_o() from builtins.type
+ |       ctrl_o
+ |      :return:
+ |  
+ |  ctrl_printscreen() from builtins.type
+ |       快捷键启动延时截图
+ |      :return:
+ |  
+ |  ctrl_r() from builtins.type
+ |       ctrl+r
+ |      :return:
+ |  
+ |  ctrl_right() from builtins.type
+ |       ctrl_right
+ |      :return:
+ |  
+ |  ctrl_rod() from builtins.type
+ |       ctrl+-
+ |      :return:
+ |  
+ |  ctrl_s() from builtins.type
+ |       ctrl_a
+ |      :return:
+ |  
+ |  ctrl_scroll(direction, amount_of_scroll=1) from builtins.type
+ |       ctrl+滚轮
+ |      :param direction:
+ |      :param amount_of_scroll:
+ |      :return:
+ |  
+ |  ctrl_shift() from builtins.type
+ |       ctrl+shift
+ |      :return:
+ |  
+ |  ctrl_shift_down() from builtins.type
+ |       ctrl_shift_down
+ |      :return:
+ |  
+ |  ctrl_shift_e() from builtins.type
+ |       ctrl+shift+e
+ |      :return:
+ |  
+ |  ctrl_shift_left() from builtins.type
+ |       ctrl_shift_left
+ |      :return:
+ |  
+ |  ctrl_shift_n() from builtins.type
+ |       ctrl_shift_n
+ |      :return:
+ |  
+ |  ctrl_shift_r() from builtins.type
+ |       ctrl+shift+r
+ |      :return:
+ |  
+ |  ctrl_shift_right() from builtins.type
+ |       ctrl_shift_right
+ |      :return:
+ |  
+ |  ctrl_shift_s() from builtins.type
+ |       ctrl+shift+s
+ |      :return:
+ |  
+ |  ctrl_shift_shortcut_down() from builtins.type
+ |       ctrl shift ? 唤起快捷键面板
+ |      :return:
+ |  
+ |  ctrl_shift_shortcut_up() from builtins.type
+ |       ctrl shift ? 收起快捷键面板
+ |      :return:
+ |  
+ |  ctrl_shift_tab() from builtins.type
+ |       快捷键ctrl+table
+ |      :return:
+ |  
+ |  ctrl_shift_up() from builtins.type
+ |       ctrl_shift_up
+ |      :return:
+ |  
+ |  ctrl_shift_w() from builtins.type
+ |       ctrl+shift+w
+ |      :return:
+ |  
+ |  ctrl_shift_z() from builtins.type
+ |       ctrl+shift+z
+ |      :return:
+ |  
+ |  ctrl_space() from builtins.type
+ |       ctrl+space
+ |      :return:
+ |  
+ |  ctrl_tab() from builtins.type
+ |       快捷键ctrl+table
+ |      :return:
+ |  
+ |  ctrl_up() from builtins.type
+ |       ctrl_up
+ |      :return:
+ |  
+ |  ctrl_v() from builtins.type
+ |       ctrl_v
+ |      :return:
+ |  
+ |  ctrl_w() from builtins.type
+ |       ctrl_w
+ |      :return:
+ |  
+ |  ctrl_x() from builtins.type
+ |       ctrl_x
+ |      :return:
+ |  
+ |  ctrl_y() from builtins.type
+ |       ctrl_y
+ |      :return:
+ |  
+ |  ctrl_z() from builtins.type
+ |       ctrl_z
+ |      :return:
+ |  
+ |  delete() from builtins.type
+ |       delete
+ |      :return:
+ |  
+ |  dot() from builtins.type
+ |       dot 键盘点号
+ |      :return:
+ |  
+ |  down() from builtins.type
+ |       down 键盘方向键-下键
+ |      :return:
+ |  
+ |  enter() from builtins.type
+ |       enter 回车
+ |      :return:
+ |  
+ |  esc() from builtins.type
+ |       esc
+ |      :return:
+ |  
+ |  f() from builtins.type
+ |       按下f快捷键
+ |      :return:
+ |  
+ |  f1() from builtins.type
+ |       f1
+ |      :return:
+ |  
+ |  f2() from builtins.type
+ |       f2
+ |      :return:
+ |  
+ |  f3() from builtins.type
+ |       f3
+ |      :return:
+ |  
+ |  f5() from builtins.type
+ |       f5
+ |      :return:
+ |  
+ |  h() from builtins.type
+ |       按下h快捷键
+ |      :return:
+ |  
+ |  i() from builtins.type
+ |       按下i快捷键
+ |      :return:
+ |  
+ |  left() from builtins.type
+ |       left 键盘方向键-左键
+ |      :return:
+ |  
+ |  o() from builtins.type
+ |       按下o快捷键
+ |      :return:
+ |  
+ |  p() from builtins.type
+ |       按下p快捷键
+ |      :return:
+ |  
+ |  pagedown() from builtins.type
+ |       下一页
+ |      :return:
+ |  
+ |  pageup() from builtins.type
+ |       上一页
+ |      :return:
+ |  
+ |  press_left_sometime(sometime: int) from builtins.type
+ |       按住键盘方向键-左键一段时间
+ |      :param sometime: 一段时间
+ |      :return:
+ |  
+ |  press_up_sometime(sometime: int) from builtins.type
+ |       按住键盘方向键-上键一段时间
+ |      :param sometime: 一段时间
+ |      :return:
+ |  
+ |  printscreen() from builtins.type
+ |       快捷键截取全屏
+ |      :return:
+ |  
+ |  r() from builtins.type
+ |       按下r快捷键
+ |      :return:
+ |  
+ |  right() from builtins.type
+ |       right 键盘方向键-右键
+ |      :return:
+ |  
+ |  s() from builtins.type
+ |       按下s快捷键
+ |      :return:
+ |  
+ |  shift() from builtins.type
+ |       shift
+ |      :return:
+ |  
+ |  shift_delete() from builtins.type
+ |       shift_delete
+ |      :return:
+ |  
+ |  shift_down() from builtins.type
+ |       shift_down
+ |      :return:
+ |  
+ |  shift_left() from builtins.type
+ |       shift+左方向键
+ |      :return:
+ |  
+ |  shift_right() from builtins.type
+ |       'shift' + 'right'
+ |      :return:
+ |  
+ |  shift_scroll(direction, amount_of_scroll=1) from builtins.type
+ |       shift+滚轮
+ |      :param direction:
+ |      :param amount_of_scroll:
+ |      :return:
+ |  
+ |  shift_space() from builtins.type
+ |       shift+space
+ |      :return:
+ |  
+ |  shift_up() from builtins.type
+ |       shift_up
+ |      :return:
+ |  
+ |  space() from builtins.type
+ |       space
+ |      :return:
+ |  
+ |  super() from builtins.type
+ |      快捷键 super
+ |      :return:
+ |  
+ |  super_d() from builtins.type
+ |      快捷键 super + d
+ |      :return:
+ |  
+ |  super_l() from builtins.type
+ |      快捷键 super + l
+ |      :return:
+ |  
+ |  super_up() from builtins.type
+ |       super_up 最大化窗口
+ |      :return:
+ |  
+ |  tab() from builtins.type
+ |       tab
+ |      :return:
+ |  
+ |  up() from builtins.type
+ |       up 键盘方向键-上键
+ |      :return:
+ |  
+ |  win_left() from builtins.type
+ |      win_left  向左切换工作区
+ |      :return:
+ |  
+ |  win_right() from builtins.type
+ |       win_right 向右切换工作区
+ |      :return:
+ |  
+ |  winleft_d() from builtins.type
+ |       winleft_d
+ |      :return:
+ |  
+ |  winleft_e() from builtins.type
+ |       winleft_e
+ |      :return:
+ |  
+ |  winleft_q() from builtins.type
+ |       winleft_q
+ |      :return:
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods inherited from src.mouse_key.MouseKey:
+ |  
+ |  clear() from builtins.type
+ |       清空表单
+ |      :return:
+ |  
+ |  click(_x=None, _y=None, _type='pyautogui') from builtins.type
+ |       点击鼠标左键
+ |      :param _x:
+ |      :param _y:
+ |      :param _type: 使用 PyAutoGUI or Xdotool 点击
+ |      :return:
+ |  
+ |  current_location(out_log=True) from builtins.type
+ |       获取当前鼠标位置
+ |      :return: 鼠标当前的坐标
+ |  
+ |  double_click(_x=None, _y=None, interval=0.3) from builtins.type
+ |       双击鼠标左键
+ |      :param _x:
+ |      :param _y:
+ |      :param interval: 两次点击的间隔，默认 0.3s
+ |      :return:
+ |  
+ |  drag_rel(_x, _y) from builtins.type
+ |       按住鼠标左键,拖拽到指定位置(相对位置)
+ |      :param _x: 拖拽的相对位置x，正数向右，负数向左
+ |      :param _y: 拖拽的相对位置y，正数向下，负数向上
+ |      :return:
+ |  
+ |  drag_to(_x, _y, duration=0.4, delay=1) from builtins.type
+ |       拖拽到指定位置(绝对位置)
+ |      :param _x: 拖拽到的位置x
+ |      :param _y: 拖拽到的位置y
+ |      :param duration: 拖拽的时长
+ |      :param delay: 拖拽后等待的时间
+ |      :return:
+ |  
+ |  draw_line(start_x, start_y, rel_x, rel_y) from builtins.type
+ |       从某个坐标开始画线（框选）
+ |      :param start_x: 开始的坐标的横坐标
+ |      :param start_y: 开始的坐标的纵坐标
+ |      :param rel_x: 向量的横坐标
+ |      :param rel_y: 向量的纵坐标
+ |      :return:
+ |  
+ |  hot_key(*args, interval=0.03) from builtins.type
+ |       键盘组合按键操作
+ |      :param args: 键盘组合键，比如："ctrl","alt","a"
+ |      :return:
+ |  
+ |  hot_key_down(*args) from builtins.type
+ |       组合按键按下不放
+ |      :param args:
+ |      :return:
+ |  
+ |  hot_key_up(*args) from builtins.type
+ |       组合按键释放
+ |      :param args:
+ |      :return:
+ |  
+ |  input = input_message(message, delay_time: int = 300, interval: [<class 'int'>, <class 'float'>] = 0.2, wayland_shift: bool = False, _ydotool: bool = False) from builtins.type
+ |       输入字符串
+ |      :param message: 输入的内容
+ |      :param delay_time: 延迟时间
+ |      :param interval:
+ |      :return:
+ |  
+ |  input_message(message, delay_time: int = 300, interval: [<class 'int'>, <class 'float'>] = 0.2, wayland_shift: bool = False, _ydotool: bool = False) from builtins.type
+ |       输入字符串
+ |      :param message: 输入的内容
+ |      :param delay_time: 延迟时间
+ |      :param interval:
+ |      :return:
+ |  
+ |  locate_all_on_screen(image_path) from builtins.type
+ |       识别所有匹配的图像
+ |      :param image_path: 图像的路径
+ |      :return: 所有匹配的位置的元组组成的列表
+ |  
+ |  middle_click() from builtins.type
+ |      单击鼠标滚轮中间
+ |  
+ |  mouse_down(_x=None, _y=None, button=1) from builtins.type
+ |       按住鼠标键不放
+ |      :param _x:
+ |      :param _y:
+ |      :param button: 1 左键， 2 中键， 3 右键
+ |      :return:
+ |  
+ |  mouse_scroll(amount_of_scroll, duration=1) from builtins.type
+ |       滚动鼠标滚轮,the_amount_of_scroll为传入滚轮数,正数为向上,负数为向下
+ |      :param amount_of_scroll: 滚轮数
+ |      :param duration:
+ |      :return:
+ |  
+ |  mouse_up(button=1) from builtins.type
+ |       松开鼠标左键
+ |      :param button: 1 左键， 2 中键， 3 右键
+ |      :return:
+ |  
+ |  move_on_and_drag_rel(start: tuple, end: tuple) from builtins.type
+ |       指定拖动的起始-终止坐标
+ |      :param start: 开始坐标
+ |      :param end: 终止坐标
+ |      :return:
+ |  
+ |  move_on_and_drag_to(start: tuple, end: tuple) from builtins.type
+ |       指定拖动的起始-终止坐标
+ |      :param start: 开始坐标
+ |      :param end: 终止坐标
+ |      :return:
+ |  
+ |  move_rel(_x, _y, duration=0.4) from builtins.type
+ |       相对移动到位置
+ |      :param _x:
+ |      :param _y:
+ |      :param duration:
+ |      :return:
+ |  
+ |  move_rel_and_click(_x, _y) from builtins.type
+ |       move relative and click
+ |      :param _x:
+ |      :param _y:
+ |      :return:
+ |  
+ |  move_to(_x, _y, duration=0.4) from builtins.type
+ |       移动到指定位置
+ |      :param _x: x
+ |      :param _y: y
+ |      :param duration:移动的速度
+ |      :return:
+ |  
+ |  move_to_and_click(_x, _y) from builtins.type
+ |       移动到某个位置点击
+ |      :param _x: 移动到的位置 x
+ |      :param _y: 移动到的位置 y
+ |      :return:
+ |  
+ |  move_to_and_double_click(_x, _y) from builtins.type
+ |       移动到某个位置点击双击
+ |      :param _x: 移动到的位置 x
+ |      :param _y: 移动到的位置 y
+ |      :return:
+ |  
+ |  move_to_and_right_click(_x, _y) from builtins.type
+ |       移动到某个位置点击右键
+ |      :param _x: 移动到的位置 x
+ |      :param _y: 移动到的位置 y
+ |      :return:
+ |  
+ |  press_key(key: str, interval=0.0, _ydotool: bool = False) from builtins.type
+ |       键盘上指定的按键
+ |      :param key: 键盘按键
+ |      :param interval:
+ |      :return:
+ |  
+ |  press_key_down(key: str) from builtins.type
+ |       按住键盘按键不放
+ |      :param key: 键盘按键
+ |      :return:
+ |  
+ |  press_key_up(key: str) from builtins.type
+ |       放松按键
+ |      :param key: 键盘按键
+ |      :return:
+ |  
+ |  reverse_select_menu(number: int) from builtins.type
+ |       选择桌面右键菜单中的选项（从下到上）
+ |      :param number: 在菜单中的位置数
+ |      :return:
+ |  
+ |  right_click(_x=None, _y=None) from builtins.type
+ |       单击鼠标右键
+ |      :param _x:
+ |      :param _y:
+ |      :return:
+ |  
+ |  screen_size() from builtins.type
+ |       获取屏幕大小
+ |      :return: width, height
+ |  
+ |  select_menu(number: int) from builtins.type
+ |       选择桌面右键菜单中的选项(从上到下)
+ |      :param number: 在菜单中的位置数
+ |      :return:
+ |  
+ |  select_submenu(number: int) from builtins.type
+ |       选择右键菜单中的子菜单选项（从上到下）
+ |      :param number: 在菜单中的位置数
+ |      :return:
+ |  
+ |  triple_click(_x=None, _y=None) from builtins.type
+ |       三击鼠标左键
+ |      :param _x:
+ |      :param _y:
+ |      :return:
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes inherited from src.mouse_key.MouseKey:
+ |  
+ |  MOUSE = {1: 'primary', 2: 'middle', 3: 'right'}
+ |  
+ |  ----------------------------------------------------------------------
+ |  Static methods inherited from src.calculate.Calculate:
+ |  
+ |  coordinate_distance(start: tuple, end: tuple)
+ |       计算两个坐标之间的直线距离
+ |      :param start: 起始坐标
+ |      :param end: 终止坐标
+ |      :return: 两点之间距离
+ |  
+ |  translational_coordinates(start: tuple, relative: tuple)
+ |       计算坐标平移
+ |      :param start: 起始坐标
+ |      :param relative: 平移的相对坐标
+ |      :return: 平移后的坐标
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods inherited from src.ocr_utils.OCRUtils:
+ |  
+ |  all_result() from builtins.type
+ |  
+ |  center() from builtins.type
+ |  
+ |  ocr(*args, **kwargs) from builtins.type
+ |      ocr load balance
+ |  
+ |  ocr_find_by_range(text, x1=None, x2=None, y1=None, y2=None) from builtins.type
+ |      OCR在当前界面中识别到多个关键词时，通过区域筛选出对应关键词并返回坐标
+ |      :param text: 页面范围内查找关键词，可自由使用以下参数划定查找区域
+ |      :param x1: x坐标开始范围，有效区域为大于 x1 区域
+ |      :param x2: x坐标结束范围，有效区域为小于 x1 区域
+ |      :param y1: y坐标开始范围，有效区域为大于 y1 区域
+ |      :param y2: y坐标结束范围，有效区域为小于 y2 区域
+ |      :return: 坐标元组 (x, y)
+ |      
+ |      注意：该方法设计是为了筛选出唯一坐标，所以需要特定区域内只有一组OCR关键词，若任有多组数据会直接报错，请增加精度
+ |      
+ |      以默认分辨率 1920*1080 为例，多种示例情况如下：
+ |      示例1（识别左半屏幕关键字）：ocr_find_by_range(x2=960)
+ |      示例2（识别下半屏幕关键字）：ocr_find_by_range(y1=540)
+ |      示例3（识别右下半屏幕关键字）：ocr_find_by_range(x1=960, y1=540)
+ |      示例4（识别特定区域 ：100*900-200*950 内关键字）：ocr_find_by_range(x1=100, y1=900, x2=200, y2=950)
+ |  
+ |  ocr_remote(target_strings: tuple = None, picture_abspath: str = None, similarity: [<class 'int'>, <class 'float'>] = 0.6, return_default: bool = False, return_first: bool = False, lang: str = 'ch', network_retry: int = None, pause: [<class 'int'>, <class 'float'>] = None, timeout: [<class 'int'>, <class 'float'>] = None, max_match_number: int = None) from builtins.type
+ |  
+ |  ocrx(*args, **kwargs) from builtins.type
+ |      支持链式调用
+ |      ocrx().click()
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes inherited from src.ocr_utils.OCRUtils:
+ |  
+ |  ocr_servers = ['10.8.15.2', '10.8.15.6', '10.8.15.7', '10.8.15.8']
+ |  
+ |  result = None
+ |  
+ |  x = None
+ |  
+ |  y = None
+

@@ -6,19 +6,19 @@ import os
 def extract_functions(c_code):
     # Regular expression to match C function definitions
     func_pattern = r'(\w[\w\d_]*\s+[\w\d_]+)\s*\((.*?)\)\s*\{(.*?)\}'  # captures return type, name, params, and body
-    func_pattern = r'''
-        ^\s*                              # Skip leading whitespaces
-        (                                # Start of function return type group
-            [\w\s\*\(\)\[\],]+           # Capture the return type (includes pointers, arrays)
-        )\s+                             # Return type followed by spaces
-        (\w[\w\d_]+)                     # Function name (identifier)
-        \s*\(                            # Opening parenthesis for function parameters
-        ([^)]*)                          # Capture function parameters (everything inside the parentheses)
-        \)\s*                            # Closing parenthesis and optional whitespace
-        \{                               # Opening curly brace of function body
-        ([^{}]*)                         # Function body (non-nested content)
-        \}                               # Closing curly brace of function body
-    '''
+    #func_pattern = r'''
+    #    ^\s*                              # Skip leading whitespaces
+    #    (                                # Start of function return type group
+    #        [\w\s\*\(\)\[\],]+           # Capture the return type (includes pointers, arrays)
+    #    )\s+                             # Return type followed by spaces
+    #    (\w[\w\d_]+)                     # Function name (identifier)
+    #    \s*\(                            # Opening parenthesis for function parameters
+    #    ([^)]*)                          # Capture function parameters (everything inside the parentheses)
+    #    \)\s*                            # Closing parenthesis and optional whitespace
+    #    \{                               # Opening curly brace of function body
+    #    ([^{}]*)                         # Function body (non-nested content)
+    #    \}                               # Closing curly brace of function body
+    #'''
 
     # Find all function matches
     functions = re.findall(func_pattern, c_code, re.VERBOSE | re.DOTALL)
@@ -31,20 +31,23 @@ def write_header(functions, header_file):
         f.write('#ifndef FUNCTIONS_H\n')
         f.write('#define FUNCTIONS_H\n\n')
 
-        for return_type, func_name, params, _ in functions:
+        #for return_type, func_name, params, _ in functions:
+        for func_name, params, _ in functions:
             # Write function declaration (prototype)
-            f.write(f"{return_type} {func_name}({params});\n")
+            f.write(f"{func_name}({params});\n")
 
         f.write('\n#endif\n')
 
 # Function to write individual functions into separate C files
 def write_function_files(functions, source_dir):
-    for return_type, func_name, params, body in functions:
+    #for return_type, func_name, params, body in functions:
+    for func_name, params, body in functions:
         func_file = os.path.join(source_dir, f'{func_name}.c')
 
         # Write the function definition to a file
         with open(func_file, 'w') as f:
-            f.write(f"{return_type} {func_name}({params}) {{\n")
+            #f.write(f"{return_type} {func_name}({params}) {{\n")
+            f.write(f"{func_name}({params}) {{\n")
             f.write(body.strip() + '\n')
             f.write('}\n')
 
@@ -73,7 +76,7 @@ def split_c_code(c_file, output_dir):
         print(i)
 
     # Extract function names for main file and for header
-    function_names = [func_name for _, func_name, _, _ in functions]
+    function_names = [func_name for func_name, _, _ in functions]
 
     # Ensure output directory exists
     os.makedirs(output_dir, exist_ok=True)
